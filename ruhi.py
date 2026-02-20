@@ -19,6 +19,7 @@ Features:
 # =============================================================================
 # STANDARD LIBRARY IMPORTS
 # =============================================================================
+import asyncio
 import os
 import sys
 import re
@@ -881,6 +882,54 @@ class ProxyParser:
             if entry:
                 results.append(entry)
         return results
+
+    @classmethod
+    def parse_file(cls, filepath: str, default_protocol: ProxyProtocol = ProxyProtocol.HTTP) -> List[ProxyEntry]:
+        """File se proxies load karne ke liye method"""
+        if not filepath or not os.path.isfile(filepath):
+            return []
+        proxies = []
+        try:
+            with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    entry = cls.parse_line(line, default_protocol)
+                    if entry:
+                        proxies.append(entry)
+        except Exception as e:
+            logger.error(f"[PARSER] File read error: {e}")
+        return proxies
+
+    @classmethod
+    def parse_file(cls, filepath: str, default_protocol: ProxyProtocol = ProxyProtocol.HTTP) -> List[ProxyEntry]:
+        """File se proxies load karne ke liye method"""
+        if not filepath or not os.path.isfile(filepath):
+            return []
+        proxies = []
+        try:
+            with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    entry = cls.parse_line(line, default_protocol)
+                    if entry:
+                        proxies.append(entry)
+        except Exception as e:
+            logger.error(f"[PARSER] File read error: {e}")
+        return proxies
+
+    @classmethod
+    def parse_file(cls, filepath: str, default_protocol: ProxyProtocol = ProxyProtocol.HTTP) -> List[ProxyEntry]:
+        """File se proxies load karne ke liye method"""
+        if not filepath or not os.path.isfile(filepath):
+            return []
+        proxies = []
+        try:
+            with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    entry = cls.parse_line(line, default_protocol)
+                    if entry:
+                        proxies.append(entry)
+        except Exception as e:
+            logger.error(f"[PARSER] File read error: {e}")
+        return proxies
 
 # =============================================================================
 # PROXY POOL
